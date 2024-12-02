@@ -43,7 +43,16 @@ export default function Hero() {
                 { duration: 0.5 },
             ],
         ]);
-    }, []);
+    }, [
+        LeftDesignAnimate,
+        LeftDesignScope,
+        LeftPointerAnimate,
+        LeftPointerScope,
+        rightDesignAnimate,
+        rightDesignScope,
+        rightPointerAnimate,
+        rightPointerScope,
+    ]);
     return (
         <section
             className="py-24 overflow-x-clip"
