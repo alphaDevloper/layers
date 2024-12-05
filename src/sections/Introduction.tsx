@@ -1,26 +1,9 @@
 "use client";
-import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 const text = `You're racing to create exceptional work, but traditional design tools slow you down with unnecessary complexity and steep learning curves.`;
 const words = text.split(" ");
 export default function Introduction() {
-    const scrolltarget = useRef<HTMLElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: scrolltarget,
-        offset: ["start end", "end end"],
-    });
-    useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        console.log("Page scroll: ", latest);
-    });
-    const [currentWord, setcurrentWord] = useState(0);
-    const wordIndex = useTransform(scrollYProgress, [0, 1], [0, words.length]);
-    useEffect(() => {
-        wordIndex.on("change", (latest) => {
-            setcurrentWord(latest);
-        });
-    }, [wordIndex]);
     return (
         <section className="py-28">
             <div className="container">
@@ -37,8 +20,7 @@ export default function Introduction() {
                                 <span
                                     key={wordIndex}
                                     className={twMerge(
-                                        "transition duration-500 text-white/15",
-                                        wordIndex < currentWord && "text-white"
+                                        "transition duration-500 text-white/15"
                                     )}
                                 >{`${word} `}</span>
                             ))}
